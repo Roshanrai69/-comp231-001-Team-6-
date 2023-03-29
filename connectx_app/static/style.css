@@ -25,9 +25,16 @@ h1 {
   margin-bottom: 50px;
 }
 
-form {
+.form-container {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  max-width: 400px;
+  max-width: 800px;
+}
+
+form {
+  width: calc(50% - 10px);
+  max-width: 350px;
   margin-bottom: 20px;
 }
 

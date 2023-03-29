@@ -13,16 +13,19 @@
   <div class="container">
     <h1>Connect-X</h1>
     <p class="quote">Connecting you to infinity</p>
-    <div class="forms-container">
-      <form class="login-form">
-        <h2>Login</h2>
+    <div class="form-container">
+      <div class="auth-options">
+        <button class="active" id="login-btn">Login</button>
+        <button id="signup-btn">Sign up</button>
+      </div>
+      <form class="auth-form" id="login-form">
         <div class="input-field">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
+          <label for="email-login">Email:</label>
+          <input type="email" id="email-login" name="email" required>
         </div>
         <div class="input-field">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
+          <label for="password-login">Password:</label>
+          <input type="password" id="password-login" name="password" required>
         </div>
         <button type="submit">Login</button>
         <p class="or">OR</p>
@@ -33,19 +36,18 @@
           <button type="button">Sign in with Google</button>
         </div>
       </form>
-      <form class="signup-form">
-        <h2>Sign up</h2>
+      <form class="auth-form hidden" id="signup-form">
         <div class="input-field">
-          <label for="fullname">Full name:</label>
-          <input type="text" id="fullname" name="fullname" required>
+          <label for="fullname-signup">Full name:</label>
+          <input type="text" id="fullname-signup" name="fullname" required>
         </div>
         <div class="input-field">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
+          <label for="email-signup">Email:</label>
+          <input type="email" id="email-signup" name="email" required>
         </div>
         <div class="input-field">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
+          <label for="password-signup">Password:</label>
+          <input type="password" id="password-signup" name="password" required>
         </div>
         <button type="submit">Sign up</button>
       </form>
