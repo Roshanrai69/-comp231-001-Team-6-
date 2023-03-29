@@ -1,0 +1,110 @@
+/* general styles */
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.quote {
+  font-size: 24px;
+  margin-bottom: 50px;
+}
+
+form {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: #f2f2f2;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #3498db;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.or {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.social-button button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #3b5998;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.social-button button:nth-child(2) {
+  background-color: #dd4b39;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #555;
+}
