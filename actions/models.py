@@ -22,6 +22,16 @@ class Action(models.Model):
                                             db_index=True)
     target = GenericForeignKey('target_ct', 'target_id')
 
+    seen = models.BooleanField(default=False)  # Add a seen field
 
     class Meta:
         ordering = ('-created',)
+
+    # def __str__(self):
+    #     return f'{self.user.username} {self.verb} {self.target}'
+
+    def mark_as_seen(self):  # Add a mark_as_seen method
+        self.seen = True
+        self.save()
+
+

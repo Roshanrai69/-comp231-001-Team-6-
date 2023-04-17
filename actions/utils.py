@@ -18,5 +18,12 @@ def create_action(user, verb, target=None):
         action = Action(user=user, verb=verb, target=target)
         action.save()
         return True
+    
+    unseen_actions = similar_actions.filter(seen=False)
+    if unseen_actions.exists():
+        # Mark the first unseen action as seen
+        unseen_actions.first().seen = True
+        unseen_actions.first().save()
+        return True
 
     return False

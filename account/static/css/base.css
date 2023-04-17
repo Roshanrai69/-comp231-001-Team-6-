@@ -198,6 +198,7 @@ ul.messages li a.close {
     max-width:300px;
     float:left;
     margin:0 20px 20px 0;
+    
 }
 .image-detail { margin-top:20px; }
 .image-info div {
@@ -275,3 +276,26 @@ img.user-detail {
     font-style:italic;
     color:#ccc;
 }
+
+
+
+.custom-header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    margin-right: 10%;
+  }
+  
+  .custom-header .navbar-brand img {
+    margin-right: 10%;
+  }
+  
+  .custom-header .ml-auto h3 {
+    color: #333;
+    margin-right: 10%;
+  }
+  
+  #disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+  }

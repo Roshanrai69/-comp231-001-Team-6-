@@ -10,7 +10,7 @@ from common.decorators import ajax_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from actions.utils import create_action
-
+from post.forms import PostSearchForm
 
 
 @login_required
@@ -80,7 +80,10 @@ def image_list(request):
     # from django.db.models import Count
     # images = Image.objects.annotate(
     #     total_likes=Count('users_like')).order_by('-total_likes')
-    paginator = Paginator(images, 8)
+    search = PostSearchForm()
+    if request.GET.get('search'):
+        images = images.filter(description__contains=request.GET['search'])
+    paginator = Paginator(images, 30)
     page = request.GET.get("page")
     try:
         images = paginator.page(page)
@@ -96,7 +99,7 @@ def image_list(request):
                       {'section': 'images', 'images': images})
 
     return render(request, 'images/image/list.html',
-                      {'section': 'images', 'images': images})
+                      {'section': 'images', 'images': images,'search':search})
 
 
 

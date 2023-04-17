@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% comment %} <h1>Index page</h1>  
+<div class="card">
+    {% for post in posts %}
+    <a href="{% url 'post:detail' post.id post.slug %}" class="card-body">{{post.body|truncatewords:5}}</a>
+    
+    {% endfor %}
+</div> {% endcomment %}
+
+<div class="container">
+    <h1 class="text-center my-4">All text Posts</h1>
+    <form id="form" method="get"> 
+        {{search.as_p}}
+        {% comment %} <input name="search" type="search" id="query" name="q" placeholder="Search..."> {% endcomment %}
+        <button class="btn btn-success" type="submit">Search</button>
+      </form> 
+    {% for post in posts %}
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <a href="{% url 'post:detail' post.id post.slug %}" class="card-body">{{post.body|truncatewords:5}}</a>
+        <p class="card-text"><small class="text-muted">{{post.created}}</small></p>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

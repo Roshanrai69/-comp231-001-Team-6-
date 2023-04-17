@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4">About Us</h1>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="text-center">
+          <img src="{% static 'ramin.jpg' %}" class="rounded-circle mb-2" alt="Ramin" height="200" width="200">
+          <h4>Ramin Beiramzadegan
+        </h4>
+          <p>Back-End Developer</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="text-center">
+          <img src="{% static 'roshan.jpeg' %}" class="rounded-circle mb-2" alt="Roshan" height="200" width="200">
+          <h4>Roshan Rai </h4>
+          <p>CTO</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="text-center">
+          <img src="{% static 'santiego.jpeg' %}" class="rounded-circle mb-2" alt="Santiago" height="200" width="200">
+          <h4>Santiago Leal Novoa 
+        </h4>
+          <p>CFO</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="text-center">
+          <img src="{% static 'seowoo.jpeg' %}" class="rounded-circle mb-2" alt="Seo Woo" height="200" width="200">
+          <h4>Seo Woo Jang
+        </h4>
+          <p>UI/UX Designer</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="text-center">
+          <img src="{% static 'saurav.jpeg' %}" class="rounded-circle mb-2" alt="Saurav" height="200" width="200">
+          <h4>Saurav Bhatt</h4>
+          <p>Front-End Developer</p>
+        </div>
+      </div>
+    </div>
+{% endblock content %}

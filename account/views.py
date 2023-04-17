@@ -4,16 +4,16 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-
+from post.models import Post
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile, Contact
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-
 from common.decorators import ajax_required
 from actions.utils import create_action
 from actions.models import Action
+from post.models import Post
 
 
 def user_login(request):
@@ -47,8 +47,8 @@ def dashboard(request):
     actions = actions.select_related('user', 'user__profile')\
         .prefetch_related('target')[:10]
 
-    return render(request, 'account/dashboard.html',
-                  {'section': 'dashboard', 'actions':actions})
+    return render(request, 'account/dashboard.html', 
+                  {'section': 'dashboard'})
 
 
 def register(request):
@@ -101,10 +101,11 @@ def user_list(request):
 @login_required
 def user_detail(request, username):
     user = get_object_or_404(User, username=username, is_active=True)
+    text_post = Post.objects.filter(user = user)
     return render(request,
                   'account/user/detail.html',
                   {'section': 'people',
-                   'user': user})
+                   'user': user,'text_post':text_post})
 
 
 @ajax_required
@@ -128,3 +129,25 @@ def user_follow(request):
             pass
 
     return JsonResponse({'status': 'error'})
+
+
+def events(request):
+    actions = Action.objects.exclude(user=request.user)
+
+    unseen_actions = actions.filter(seen=False)
+
+    # Call mark_as_seen for each unseen action
+    for action in unseen_actions:
+        action.mark_as_seen()
+
+    actions = actions.select_related('user', 'user__profile')\
+        .prefetch_related('target')[:10]
+
+    return render(request, 'account/user/events.html',
+                  {'section': 'events', 'actions':actions})
+
+
+
+
+def about(request):
+    return render(request,'account/about.html',{'section':'about'})

@@ -31,10 +31,13 @@ ALLOWED_HOSTS = ['mysite.com', '127.0.0.1', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    
     'social_django',
     'django_extensions',
     'easy_thumbnails',
+    'post.apps.PostConfig' ,
     'account.apps.AccountConfig',
+    'chatbox.apps.ChatboxConfig',
     'images.apps.ImagesConfig',
     'actions.apps.ActionsConfig',
     'django.contrib.admin',
@@ -139,8 +142,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'zafre.bahrami@gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_PASSWORD = 'ykbdykdnnklsmuos'
+EMAIL_HOST_PASSWORD = 'cnhfdhuiqxullrzr'
 EMAIL_USE_TLS = True 
+DEFAULT_FROM_EMAIL='connect-x'
+
 
 STATICFILES_DIRS = [
 BASE_DIR / "static"
@@ -153,8 +158,8 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
 ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '175407757736-4i5gjn7qpfa0thm6hn9ofk3hdbnbeeom.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'tor0Yz2-lNlYDvb2-a9PhDpS'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '245502200495-7kiuub31dhjb2dffai3q3oomcvn1v6rq.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 from django.urls import reverse_lazy
 ABSOLUTE_URL_OVERRIDES = {

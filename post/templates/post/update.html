@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+ {% comment %} <form action="" method="post" novalidate>
+    {% csrf_token %}
+   
+    <button class="btn btn-info" type="submit">Update</button>
+</form>   {% endcomment %}
+
+
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{form.as_p}}
+                            {% comment %} <label for="postContent">Update your post</label>
+                            <textarea name="body" class="form-control" id="postContent" rows="3"></textarea> {% endcomment %}
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Update">
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock  %}
+
+
+

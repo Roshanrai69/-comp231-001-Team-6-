@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>New Events</h1>
+  <div id="action-list">
+    {% for action in actions %}
+    <div class="notification{% if action.seen %}seen{% endif %}" style="notification seen{display: none;}">
+        {% include "actions/action/detail.html" %}
+    </div>
+      
+    {% endfor %}
+  </div>  
+{% endblock content %}

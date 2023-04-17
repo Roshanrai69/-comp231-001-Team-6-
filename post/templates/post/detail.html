@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+
+
+
+
+
+         <div class="container mt-5">
+            <!-- Post content -->
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{post.user.username}} - {{post.updated |date:'Y-M'}}</h5>
+                <span class="text-muted" id="like-count">Likes: {{ post.postvotes.count }} </span>
+                <p class="card-text">{{post.body}}</p>
+                <!-- Like button -->
+                <button id="like-button" data-id="{{ post_id }}" type="button" class="liked btn btn-outline-secondary mr-2">
+                {% if request.user.id in vote.user.id %}
+                    Like
+                  {% else %}
+                    Unlike
+                  {% endif %}
+                </button>
+                <!-- Number of likes -->
+                
+                <!-- Update button -->
+                {% if request.user.id == post.user.id  %}
+                <a href="{% url 'post:post_update' post.id %}" class="btn btn-outline-primary mr-2">
+                  <i class="fa fa-edit"></i> Update
+                </a>
+                <!-- Delete button -->
+                <a href="{% url 'post:post_delete' post.id %}" class="btn btn-outline-danger">
+                  <i class="fa fa-trash"></i> Delete
+                </a>
+                {% endif %}
+              </div>
+            </div>
+        
+            <!-- Comment form -->
+            {% if request.user.is_authenticated %}
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+              <div class="form-group">
+                
+        
+                <label for="comment">Add a comment:</label>
+                <textarea name="body" class="form-control" id="comment" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            {% else %}
+            <p class="alert alert-danger">only registered users can Comment.</p>
+            {% endif %}
+            <!-- Comments section -->
+            <div class="mt-4">
+              <h5>Comments:</h5>
+              <!-- Comment 1 -->
+              <p>{{comments.count}} comment(S)</p>  
+             {% for comment in comments  %}
+              <div class="card mt-3">
+                <div class="card-body">
+                    <p class="card-header">{{comment.user}}|{{comment.created|timesince}} </p>
+                    <p class="card-body">{{comment.body}}</p>
+                    
+                    {% if request.user.is_authenticated %}
+                    <form action="{% url 'post:reply_comment' post.id comment.id %}" method="post">
+                        {% csrf_token %}
+                        <textarea name="body" class="form-control" id="comment" rows="3"></textarea>
+
+                        {% comment %} {{reply_form.as_p }} {% endcomment %}
+                        <input type="submit" class="btn btn-primary" value='reply'>
+                    </form> 
+                    {% endif %}
+                    {% with replies=comment.replycomments.all  %}
+                    {% for reply in replies %}
+                       <p class="bg-white p-3 m-2">{{reply.user}} - {{reply.body}} </p>
+                    {% endfor %}
+                    {% endwith %}  
+                </div>
+                <br>
+            {% empty %}
+            <hr>
+            no cooment yet
+             {% endfor %} 
+                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock  %}
+
+ {% block js %}
+<script>
+    $(document).ready(function() {
+        
+        $('#like-button').click(function() {
+          var post_id = $(this).data('post-id');
+          var post_slug = '{{ post.slug }}';
+      
+          var button = $(this);
+          var is_liked = button.hasClass('liked');
+      
+          $.ajax({
+            method: 'POST',
+            url: '{% url "post:post_like" post.id %}',
+            data: {
+              'post_id': post_id,
+              'post_slug': post_slug,
+              'is_liked': is_liked,
+              'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(data) {
+              var likes_count = data.likes_count;
+              button.find('span.count').text(likes_count);
+              if (is_liked) {
+                button.text('Like');
+                button.removeClass('liked');
+              } else {
+                button.text('Unlike');
+                button.removeClass('unliked');
+                
+              }
+            }
+          });
+        });
+      });
+      
+</script>
+{% endblock js %}  
+
+
+
+  

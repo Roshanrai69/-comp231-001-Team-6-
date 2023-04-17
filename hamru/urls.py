@@ -22,8 +22,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('social-auth/',
-         include('social_django.urls', namespace='social')),
+    include('social_django.urls', namespace='social')),
     path('images/', include('images.urls', namespace='images')),
+    path('',include("post.urls",namespace="post")),
+    path('',include('chatbox.urls',namespace="chatroom"))
 ]
 
 if settings.DEBUG:

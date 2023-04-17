@@ -5,11 +5,17 @@
     <a href="{{ image.get_absolute_url }}">
       {% thumbnail image.image 200x200 crop="smart" as im %}
       <img src="{{ im.url }}">
+      
     </a>
+   
     <div class="info">
       <a href="{{ image.get_absolute_url }}" class="title">
         {{ image.title }}
       </a>
     </div>
   </div>
+  {% comment %} {% for post in text_post %}
+  <a href="{% url 'post:detail' post.id post.slug %}" class="card-body">{{post.body|truncatewords:5}}</a>
+  
+  {% endfor %} {% endcomment %}
 {% endfor %}

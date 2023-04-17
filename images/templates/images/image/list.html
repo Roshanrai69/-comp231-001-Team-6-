@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}Images bookmarked{% endblock %}
+{% block title %}Images Uploaded{% endblock %}
 
 {% block content %}
   <h1>Images Uploaded</h1>
+  <form id="form" method="get"> 
+    {{search.as_p}}
+    {% comment %} <input name="search" type="search" id="query" name="q" placeholder="Search..."> {% endcomment %}
+    <button class="btn btn-success" type="submit">Search</button>
+  </form> 
+  <br>
   <div id="image-list">
     {% include "images/image/list_ajax.html" %}
   </div>
